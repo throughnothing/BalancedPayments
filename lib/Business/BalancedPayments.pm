@@ -24,6 +24,11 @@ sub _build_marketplace {
     return $data->{items}[0];
 }
 
+sub get_transactions {
+    my ($self) = @_;
+    return $self->get($self->marketplace->{uri} . "/transactions");
+}
+
 sub get_card {
     my ($self, $id) = @_;
     croak 'The id param is missing' unless defined $id;
@@ -239,6 +244,12 @@ This module provides bindings for the
 L<BalancedPayments|https://www.balancedpayments.com> API.
 
 =head1 METHODS
+
+=head2 get_transactions
+
+    get_transactions()
+
+Returns all transactions on this marketplace
 
 =head2 get_card
 
