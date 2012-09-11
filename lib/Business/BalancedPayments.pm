@@ -25,8 +25,10 @@ sub _build_marketplace {
 }
 
 sub get_transactions {
-    my ($self) = @_;
-    return $self->get($self->marketplace->{uri} . "/transactions");
+    my ($self, %args) = @_;
+    my $qp = '?';
+    $qp .= "$_=$args{$_}&" for keys %args;
+    return $self->get($self->marketplace->{uri} . "/transactions$qp");
 }
 
 sub get_card {
