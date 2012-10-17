@@ -176,6 +176,12 @@ sub invalidate_bank_account {
     return $self->update_bank_account({ id => $bank_id, is_valid => 0 });
 }
 
+sub get_credit {
+    my ($self, $id) = @_;
+    croak 'The id param is missing' unless defined $id;
+    return $self->get($self->marketplace->{credits_uri} . "/$id");
+}
+
 sub create_credit {
     my ($self, $credit, %args) = @_;
     my $account = $args{account};
